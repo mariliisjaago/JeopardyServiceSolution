@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace EFConsoleUI.Models
+﻿namespace DataAccessLibrary.Models
 {
     public class QuestionAndAnswer
     {
         public int Id { get; set; }
         public int ShowNumber { get; set; }
-        public DateTime AirDate { get; set; }
         public string Round { get; set; }
         public string Category { get; set; }
         public int Value { get; set; }
