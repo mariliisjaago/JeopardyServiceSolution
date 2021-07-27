@@ -9,6 +9,8 @@ namespace DataAccessLibrary
     {
         public DbSet<QuestionAndAnswer> QuestionsAndAnswers { get; set; }
         public DbSet<Show> Shows { get; set; }
+        public DbSet<Round> Rounds { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
