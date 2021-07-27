@@ -13,7 +13,6 @@ namespace DataAccessLibrary.Models
         [Required]
         public Round Round { get; set; }
         [Required]
-        [MaxLength(150)]
         public Category Category { get; set; }
         [Required]
         public int Value { get; set; }

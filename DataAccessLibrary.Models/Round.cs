@@ -6,6 +6,7 @@ namespace DataAccessLibrary.Models
     {
         public int Id { get; set; }
         [Required]
+        [MaxLength(150)]
         public string RoundName { get; set; }
     }
 }
