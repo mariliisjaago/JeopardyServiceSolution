@@ -21,4 +21,8 @@
     <ProjectReference Include="..\DataAccessLibrary.Models\DataAccessLibrary.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

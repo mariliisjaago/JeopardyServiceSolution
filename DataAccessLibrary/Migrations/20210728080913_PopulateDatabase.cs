@@ -1,12 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using DataAccessLibrary.Models;
+using Microsoft.EntityFrameworkCore.Migrations;
+using System.Collections.Generic;
 
 namespace DataAccessLibrary.Migrations
 {
     public partial class PopulateDatabase : Migration
     {
+        private List<RawQuestionModel> questions = new List<RawQuestionModel>();
+
+        private List<RawShowModel> shows = new List<RawShowModel>();
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             // read in the csv files
+
+
 
             // go over Shows file, put to table
 
@@ -23,7 +31,6 @@ namespace DataAccessLibrary.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            // truncate tables to empties
             migrationBuilder.Sql("DELETE FROM dbo.QuestionsAndAnswers;");
 
             migrationBuilder.Sql("DELETE FROM dbo.Shows;");
