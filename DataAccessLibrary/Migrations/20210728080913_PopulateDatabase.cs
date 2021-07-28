@@ -24,13 +24,13 @@ namespace DataAccessLibrary.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             // truncate tables to empties
-            migrationBuilder.Sql("TRUNCATE TABLE QuestionsAndAnswers;");
+            migrationBuilder.Sql("DELETE FROM dbo.QuestionsAndAnswers;");
 
-            migrationBuilder.Sql("TRUNCATE TABLE Shows;");
+            migrationBuilder.Sql("DELETE FROM dbo.Shows;");
 
-            migrationBuilder.Sql("TRUNCATE TABLE Rounds;");
+            migrationBuilder.Sql("DELETE FROM dbo.Rounds;");
 
-            migrationBuilder.Sql("TRUNCATE TABLE Categories;");
+            migrationBuilder.Sql("DELETE FROM dbo.Categories;");
         }
     }
 }
