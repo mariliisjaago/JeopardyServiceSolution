@@ -6,7 +6,8 @@ namespace EFConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            Console.WriteLine(AppContext.BaseDirectory);
         }
     }
 }
