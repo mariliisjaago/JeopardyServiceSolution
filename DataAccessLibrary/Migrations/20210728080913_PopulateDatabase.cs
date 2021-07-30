@@ -11,9 +11,7 @@ namespace DataAccessLibrary.Migrations
     {
         private List<RawQuestionModel> questions;
 
-        private List<RawShowModel> shows = new List<RawShowModel>();
-
-        private IDictionary<string, int> showsWithIds = new Dictionary<string, int>();
+        private List<RawShowModel> shows;
 
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,25 +21,25 @@ namespace DataAccessLibrary.Migrations
             migrationBuilder.InsertData("Rounds", "RoundName", "Double Jeopardy!");
             migrationBuilder.InsertData("Rounds", "RoundName", "Final Jeopardy!");
 
-            // copy the csv file as string
+            // get seed data for Shows and Questions from CSV files (filepaths hardcoded in the methods)
 
             shows = GetShows();
 
-            //questions = GetQuestions();
+            questions = GetQuestions();
 
 
-            // go over Shows file, put to table
+            // go over Shows file, insert info to Shows table in db
 
-            string[] roundsColumns = new string[] { "ShowNumber", "AirDate" };
+            string[] showsColumns = new string[] { "Id", "ShowNumber", "AirDate" };
 
             shows.ForEach(x =>
             {
-                migrationBuilder.InsertData("Shows", roundsColumns, new object[] { x.ShowNumber, x.AirDate });
+                migrationBuilder.InsertData("Shows", showsColumns, new object[] { Guid.NewGuid(), x.ShowNumber, x.AirDate });
             });
 
-            // go over Data file, collect
 
-            // 1. rounds
+
+            // go over Questions file, collect
 
             // 2. categories
 
@@ -67,6 +65,7 @@ namespace DataAccessLibrary.Migrations
 
                 output.Add(new RawShowModel
                 {
+                    Id = Guid.NewGuid(),
                     ShowNumber = Int32.Parse(lineParts[0]),
                     AirDate = DateTime.ParseExact(lineParts[1], "dd.mm.yyyy", cultureInfoProvider)
                 });

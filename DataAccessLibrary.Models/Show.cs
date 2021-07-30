@@ -7,7 +7,7 @@ namespace DataAccessLibrary.Models
     [Index(nameof(AirDate))]
     public class Show
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public int ShowNumber { get; set; }
         [Required]

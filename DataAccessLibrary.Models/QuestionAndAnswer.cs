@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataAccessLibrary.Models
@@ -7,13 +8,13 @@ namespace DataAccessLibrary.Models
     [Index(nameof(Value))]
     public class QuestionAndAnswer
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
-        public Show ShowData { get; set; }
+        virtual public Show ShowData { get; set; }
         [Required]
-        public Round Round { get; set; }
+        virtual public Round Round { get; set; }
         [Required]
-        public Category Category { get; set; }
+        virtual public Category Category { get; set; }
         [Required]
         public int Value { get; set; }
         [Required]
