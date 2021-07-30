@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace DataAccessLibrary.Models
+﻿namespace DataAccessLibrary.Models
 {
     public class RawQuestionModel
     {
-        public Guid Id { get; set; }
         public int ShowNumber { get; set; }
         public string Round { get; set; }
         public string Category { get; set; }

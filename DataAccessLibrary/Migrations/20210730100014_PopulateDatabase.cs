@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -68,11 +69,11 @@ namespace DataAccessLibrary.Migrations
 
             questionsToDb = TransformRawToDbModel();
 
-            string[] questionsColumns = new string[] { "ShowDataId", "RoundId", "CategoryId", "Value", "Question", "Answer" };
+            string[] questionsColumns = new string[] { "Id", "ShowDataId", "RoundId", "CategoryId", "Value", "Question", "Answer" };
 
             questionsToDb.ForEach(x =>
             {
-                migrationBuilder.InsertData("QuestionsAndAnswers", questionsColumns, new object[] { x.ShowData.Id, x.Round.Id, x.Category.Id, x.Value, x.Question, x.Answer });
+                migrationBuilder.InsertData("QuestionsAndAnswers", questionsColumns, new object[] { x.Id, x.ShowData.Id, x.Round.Id, x.Category.Id, x.Value, x.Question, x.Answer });
             });
         }
 
@@ -84,27 +85,50 @@ namespace DataAccessLibrary.Migrations
             {
                 QuestionAndAnswer oneQuestion = new QuestionAndAnswer
                 {
-                    ShowData = new Show
-                    {
-                        // get show Id from Shows list, because we know this current question's showNumber.
-                        Id = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault().Id
-                        // do I need to fill these two properties in?
-                        // ShowNumber = question.ShowNumber,
-                        // AirDate = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault().AirDate
-                    },
-                    Round = new Round
-                    {
-                        Id = rounds.Where(x => x.RoundName == question.Round).FirstOrDefault().Id
-                        //RoundName = question.Round
-                    },
-                    Category = new Category
-                    {
-                        Id = categories.Where(x => x.CategoryName == question.Category).FirstOrDefault().Id
-                        // CategoryName = question.Category
-                    },
+                    Id = Guid.NewGuid(),
                     Value = question.Value,
                     Question = question.Question,
                     Answer = question.Answer
+                };
+
+                // some showNumbers, rounds, categories could not be parsed, so cannot find in db. Checking for nulls here. If Guid not found, do not enter this question to db.
+                Show? show = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault();
+                Round? round = rounds.Where(x => x.RoundName == question.Round).FirstOrDefault();
+                Category? category = categories.Where(x => x.CategoryName == question.Category).FirstOrDefault();
+
+                if (show == null)
+                {
+                    continue;
+                }
+
+                oneQuestion.ShowData = new Show
+                {
+                    Id = show.Id,
+                    // do I need to fill these two properties in?
+                    ShowNumber = question.ShowNumber,
+                    AirDate = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault().AirDate
+                };
+
+                if (round == null)
+                {
+                    continue;
+                }
+
+                oneQuestion.Round = new Round
+                {
+                    Id = round.Id,
+                    RoundName = question.Round
+                };
+
+                if (category == null)
+                {
+                    continue;
+                }
+
+                oneQuestion.Category = new Category
+                {
+                    Id = category.Id,
+                    CategoryName = question.Category
                 };
 
                 output.Add(oneQuestion);
@@ -180,7 +204,7 @@ namespace DataAccessLibrary.Migrations
         {
             List<RawQuestionModel> output = new List<RawQuestionModel>();
 
-            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "../../../Migrations/20210730100014_PopulateDatabase_questions.csv"));
+            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "Migrations/20210730100014_PopulateDatabase_questions.csv"));
 
             // read first line of header but don't do anything with it
             reader.ReadLine();
@@ -190,18 +214,36 @@ namespace DataAccessLibrary.Migrations
             {
                 string[] lineParts = line.Split(';');
 
-                output.Add(new RawQuestionModel
+                RawQuestionModel oneQuestion = new RawQuestionModel
                 {
-                    ShowNumber = Int32.Parse(lineParts[0]),
                     Round = lineParts[1],
                     Category = lineParts[2],
-                    Value = Int32.Parse(lineParts[3]),
                     Question = lineParts[4],
                     Answer = lineParts[5]
-                });
+                };
+
+                oneQuestion.ShowNumber = ReturnValidIntOrMinusOne(lineParts[0]);
+                oneQuestion.Value = ReturnValidIntOrMinusOne(lineParts[3]);
+
+                output.Add(oneQuestion);
             }
 
             return output;
+        }
+
+        private int ReturnValidIntOrMinusOne(string numberAsString)
+        {
+            int number;
+            bool validNumber = Int32.TryParse(numberAsString, out number);
+
+            if (validNumber)
+            {
+                return number;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
