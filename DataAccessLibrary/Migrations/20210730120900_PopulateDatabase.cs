@@ -52,8 +52,7 @@ namespace DataAccessLibrary.Migrations
             });
 
 
-            // go over Questions file, collect
-
+            // go over Questions file,
             // 1. collect categories and insert to db
 
             categories = GetCategories();
@@ -64,6 +63,7 @@ namespace DataAccessLibrary.Migrations
             {
                 migrationBuilder.InsertData("Categories", categoryColumns, new object[] { x.Id, x.CategoryName });
             });
+
 
             // 2. transform raw Q&A models to db-needed models and insert to db
 
@@ -91,7 +91,7 @@ namespace DataAccessLibrary.Migrations
                     Answer = question.Answer
                 };
 
-                // some showNumbers, rounds, categories could not be parsed, so cannot find in db. Checking for nulls here. If Guid not found, do not enter this question to db.
+                // some showNumbers, rounds, categories could not be parsed, so cannot find in db. Checking for nulls here. If object with given property not found, do not enter this question to db.
                 Show? show = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault();
                 Round? round = rounds.Where(x => x.RoundName == question.Round).FirstOrDefault();
                 Category? category = categories.Where(x => x.CategoryName == question.Category).FirstOrDefault();
@@ -104,7 +104,6 @@ namespace DataAccessLibrary.Migrations
                 oneQuestion.ShowData = new Show
                 {
                     Id = show.Id,
-                    // do I need to fill these two properties in?
                     ShowNumber = question.ShowNumber,
                     AirDate = shows.Where(x => x.ShowNumber == question.ShowNumber).FirstOrDefault().AirDate
                 };
