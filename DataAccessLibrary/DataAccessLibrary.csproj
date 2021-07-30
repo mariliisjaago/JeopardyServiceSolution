@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210728080913_PopulateDatabase.cs" />
+    <Compile Remove="Migrations\20210728080913_PopulateDatabase.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
@@ -26,10 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Migrations\20210728080913_PopulateDatabase_questions.csv">
+    <None Update="Migrations\20210730100014_PopulateDatabase_questions.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Migrations\20210728080913_PopulateDatabase_shows.csv">
+    <None Update="Migrations\20210730100014_PopulateDatabase_shows.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

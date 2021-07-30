@@ -11,8 +11,7 @@ namespace DataAccessLibrary.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
                 },
                 constraints: table =>
@@ -24,8 +23,7 @@ namespace DataAccessLibrary.Migrations
                 name: "Rounds",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoundName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
                 },
                 constraints: table =>
@@ -37,8 +35,7 @@ namespace DataAccessLibrary.Migrations
                 name: "Shows",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ShowNumber = table.Column<int>(type: "int", nullable: false),
                     AirDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -51,11 +48,10 @@ namespace DataAccessLibrary.Migrations
                 name: "QuestionsAndAnswers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ShowDataId = table.Column<int>(type: "int", nullable: true),
-                    RoundId = table.Column<int>(type: "int", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ShowDataId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RoundId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Value = table.Column<int>(type: "int", nullable: false),
                     Question = table.Column<string>(type: "nvarchar(900)", maxLength: 900, nullable: false),
                     Answer = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)

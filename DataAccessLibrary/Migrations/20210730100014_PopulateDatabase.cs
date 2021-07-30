@@ -114,7 +114,7 @@ namespace DataAccessLibrary.Migrations
         }
 
         private List<Category> GetCategories()
-        {   
+        {
             // gather all unique (dstinct) categories from the questions dataset
             List<string> categoryNames = questions.Select(x => x.Category).Distinct().ToList();
 
@@ -153,7 +153,7 @@ namespace DataAccessLibrary.Migrations
         {
             List<Show> output = new List<Show>();
 
-            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "Migrations/20210728080913_PopulateDatabase_shows.csv"));
+            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "Migrations/20210730100014_PopulateDatabase_shows.csv"));
 
             // read first line of header but don't do anything with it
             reader.ReadLine();
@@ -180,7 +180,7 @@ namespace DataAccessLibrary.Migrations
         {
             List<RawQuestionModel> output = new List<RawQuestionModel>();
 
-            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "../../../Migrations/20210728080913_PopulateDatabase_questions.csv"));
+            StreamReader reader = new StreamReader(Path.Combine(AppContext.BaseDirectory, "../../../Migrations/20210730100014_PopulateDatabase_questions.csv"));
 
             // read first line of header but don't do anything with it
             reader.ReadLine();
