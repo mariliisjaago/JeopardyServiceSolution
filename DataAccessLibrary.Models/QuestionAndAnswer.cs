@@ -18,10 +18,10 @@ namespace DataAccessLibrary.Models
         [Required]
         public int Value { get; set; }
         [Required]
-        [MaxLength(900)]
+        [MaxLength(2000)]
         public string Question { get; set; }
         [Required]
-        [MaxLength(150)]
+        [MaxLength(2000)]
         public string Answer { get; set; }
     }
 }

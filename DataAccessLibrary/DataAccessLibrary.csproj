@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20210728080913_PopulateDatabase.cs" />
     <Compile Remove="Migrations\20210728080913_PopulateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20210730092937_CreateDatabase.cs" />
+    <Compile Remove="Migrations\20210730092937_CreateDatabase.Designer.cs" />
+    <Compile Remove="Migrations\20210730100014_PopulateDatabase.cs" />
+    <Compile Remove="Migrations\20210730100014_PopulateDatabase.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
