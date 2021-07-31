@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DataAccessLibrary
 {
-    public class JeopardyContext : DbContext
+    public class JeopardyContext : DbContext, IJeopardyContext
     {
         public DbSet<QuestionAndAnswer> QuestionsAndAnswers { get; set; }
         public DbSet<Show> Shows { get; set; }

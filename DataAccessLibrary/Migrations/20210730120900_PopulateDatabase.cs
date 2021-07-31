@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -11,15 +10,15 @@ namespace DataAccessLibrary.Migrations
 {
     public partial class PopulateDatabase : Migration
     {
-        private List<RawQuestionModel> questions;
+        private List<RawQuestionModel> questions = new List<RawQuestionModel>();
 
-        private List<QuestionAndAnswer> questionsToDb;
+        private List<QuestionAndAnswer> questionsToDb = new List<QuestionAndAnswer>();
 
-        private List<Show> shows;
+        private List<Show> shows = new List<Show>();
 
-        private List<Round> rounds;
+        private List<Round> rounds = new List<Round>();
 
-        private List<Category> categories;
+        private List<Category> categories = new List<Category>();
 
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -181,7 +180,7 @@ namespace DataAccessLibrary.Migrations
             // read first line of header but don't do anything with it
             reader.ReadLine();
 
-            string line;
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 string[] lineParts = line.Split(';');
@@ -208,7 +207,7 @@ namespace DataAccessLibrary.Migrations
             // read first line of header but don't do anything with it
             reader.ReadLine();
 
-            string line;
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 string[] lineParts = line.Split(';');
