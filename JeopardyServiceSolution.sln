@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataPrepConsoleUI", "DataPrepConsoleUI\DataPrepConsoleUI.csproj", "{D9878BBD-A5AD-44A9-9F3F-3F541F6006ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFConsoleUI", "EFConsoleUI\EFConsoleUI.csproj", "{62A90A41-9BE7-4777-B02D-1D261CE1A7E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFConsoleUI", "EFConsoleUI\EFConsoleUI.csproj", "{62A90A41-9BE7-4777-B02D-1D261CE1A7E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary", "DataAccessLibrary\DataAccessLibrary.csproj", "{59C9A0D9-733F-46A0-BF0F-C72A51A9DFDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLibrary", "DataAccessLibrary\DataAccessLibrary.csproj", "{59C9A0D9-733F-46A0-BF0F-C72A51A9DFDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary.Models", "DataAccessLibrary.Models\DataAccessLibrary.Models.csproj", "{3BFDA9DA-EFF0-4288-9B54-198CBDA944B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLibrary.Models", "DataAccessLibrary.Models\DataAccessLibrary.Models.csproj", "{3BFDA9DA-EFF0-4288-9B54-198CBDA944B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeopardyApi", "JeopardyApi\JeopardyApi.csproj", "{EA39C74C-7B5E-4497-9A96-CAB66D21D261}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3BFDA9DA-EFF0-4288-9B54-198CBDA944B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BFDA9DA-EFF0-4288-9B54-198CBDA944B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BFDA9DA-EFF0-4288-9B54-198CBDA944B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA39C74C-7B5E-4497-9A96-CAB66D21D261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA39C74C-7B5E-4497-9A96-CAB66D21D261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA39C74C-7B5E-4497-9A96-CAB66D21D261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA39C74C-7B5E-4497-9A96-CAB66D21D261}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
