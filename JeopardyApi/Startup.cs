@@ -30,9 +30,7 @@ namespace JeopardyApi
 #endif
             });
 
-            // services.AddDbContext<IJeopardyContext, JeopardyContext>();
-
-            services.AddScoped<IJeopardyContext, JeopardyContext>();
+            services.AddDbContext<IJeopardyContext, JeopardyContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
